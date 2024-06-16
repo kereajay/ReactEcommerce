@@ -30,7 +30,7 @@ function Details() {
     const options = {
         method: 'GET',
         headers: {
-            'x-rapidapi-key': '04484b2c5bmsh4f79190b144fab8p1b8a81jsnaf5a505628d3',
+            'x-rapidapi-key': 'ac18448241msh25df8f16272c337p1cf69ajsn2b65461ef39e',
             'x-rapidapi-host': 'real-time-amazon-data.p.rapidapi.com'
         }
     };
@@ -50,7 +50,7 @@ const urlr = `https://real-time-amazon-data.p.rapidapi.com/product-reviews?asin=
 const optionsr = {
 	method: 'GET',
 	headers: {
-		'x-rapidapi-key': '04484b2c5bmsh4f79190b144fab8p1b8a81jsnaf5a505628d3',
+		'x-rapidapi-key': 'eb253502a4msh9d968a965eb48c3p125caejsn4d0ff7834478',
 		'x-rapidapi-host': 'real-time-amazon-data.p.rapidapi.com'
 	}
 };

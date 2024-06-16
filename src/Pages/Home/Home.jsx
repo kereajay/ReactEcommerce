@@ -3,10 +3,14 @@ import { useNavigate } from 'react-router-dom'
 import Carousel from "react-multi-carousel";
 import { toast } from 'react-toastify';
 import "react-multi-carousel/lib/styles.css";
+import { useGetToysSearchQuery } from '../../Redux/Store/Slices/Amazon'
+import Load from '../Loading/Load'
+
 // import { useNavigate } from 'react-router-dom';
 
 
 function Home() {
+  const[categorey,setCategorey]=useState()
   const [inputval,setInputval]=useState("")
   const navigate = useNavigate()
   const[homedata,setHomedata]=useState([])
@@ -40,7 +44,7 @@ const url = 'https://real-time-amazon-data.p.rapidapi.com/products-by-category?c
 const options = {
 	method: 'GET',
 	headers: {
-		'x-rapidapi-key': '04484b2c5bmsh4f79190b144fab8p1b8a81jsnaf5a505628d3',
+		'x-rapidapi-key': 'ac18448241msh25df8f16272c337p1cf69ajsn2b65461ef39e',
 		'x-rapidapi-host': 'real-time-amazon-data.p.rapidapi.com'
 	}
 };
@@ -57,7 +61,7 @@ try {
 }
 }
 
-// console.log(homedata)
+const { data, error, isLoading } = useGetToysSearchQuery(`search?query=${categorey}&page=1&country=US&sort_by=RELEVANCE&product_condition=ALL`)
 
   return (
     <>
@@ -122,8 +126,64 @@ try {
 </div>
 
 <br />
-      <div>
+      <div className='px-4'>
         <h1 className='text-3xl font-bold text-center'>Product Categories</h1>
+         <select name="categories" id="" onChange={(e)=>setCategorey(e.target.value)} value={categorey} className='px2 border-2 w-44 py-2'>
+          <option value="toys-ans-games">Toys&games</option>
+          <option value="appliances">Appliances</option>
+          <option value="electronics">Electronic</option>
+          <option value="Phone">Phones</option>
+          <option value="fashion_baby">Baby</option>
+          <option value="fashion_boys">Boys</option>
+          <option value="fashion_girls">Girls</option>
+          <option value="fashion_women">Women</option>
+          <option value="fashion_men">Men</option>
+          <option value="grocery">Grocery</option>
+          
+         </select>
+         <br />
+         <div className="py-5  grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4">
+                {error ? (
+                    <>Oh no, there was an error</>
+                ) : isLoading ? (
+                    <Load/>
+                ) : data ? (
+                    <>
+                        {
+                            data.data.products.map((item) => {
+                                return (
+                                    <>
+                                        <div >
+                                            <div className='h-64 px-2 py-4 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] flex gap-4   dark:shadow-white/80' >
+
+
+                                                <div onClick={()=>navigate(`/Details/${item.asin}`)}>
+                                                    <img className='w-44 object-cover m-auto' src={item.
+                                                        product_photo
+                                                    } alt="" />
+                                                </div>
+                                                <div>
+                                                    <h1 className='text-xl font-semibold'>{item.product_title}</h1>
+                                                    <h1 className='font-semibold text-green-400 text-xl'>{item.product_price
+                                                    }  </h1>
+                                                    <h3 className='line-through italic '>{item.
+                                                        product_minimum_offer_price
+                                                    }</h3>
+                                                    <button onClick={()=>navigate(`/Cart/${item.asin}`)} className='bg-orange-300 py-1 px-2 font-semibold rounded-xl'>Add➕</button>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <br />
+
+                                        </div>
+                                    </>
+                                )
+                            })
+                        }
+                    </>
+                ) : null}
+            </div>
+
         <br />
         <div className='grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-8 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(45,78,255,0.15)] px-4  '>
           <div className='px-2 py-4 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] dark:shadow-white/80' onClick={() => navigate('/Phone')}>
