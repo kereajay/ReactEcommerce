@@ -1,94 +1,87 @@
-import React, { useState,useContext } from "react";
+import React, { useContext } from "react";
 import { database } from "../Firebase/Firebase";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { sigininsontext } from "../../../main"
+import { sigininsontext } from "../../../main";
 import { useSelector, useDispatch } from 'react-redux';
-import {isSignedin} from '../../../Redux/Store/Slices/Validation'
+import { isSignedin } from '../../../Redux/Store/Slices/Validation';
 
 function Signin() {
-  const dispatch=useDispatch();
-  const dispayother=useSelector((state)=>state.validate)
-    
-    const {issignin,setIssignin} = useContext(sigininsontext);
-    console.log(issignin)
+  const dispatch = useDispatch();
+  const { issignin, setIssignin } = useContext(sigininsontext);
+  console.log(issignin);
  
   const navigate = useNavigate();
-  const handlesubmit = (e, type) => {
+
+  const handlesubmit = (e) => {
     e.preventDefault();
-    if (!e.target.email.value || !e.target.password.value) {
-      toast.error("please enter email and password", {
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    if (!email || !password) {
+      toast.error("Please enter email and password", {
         position: "top-center",
         autoClose: 2000,
       });
       return;
     }
-    const email = e.target.email.value;
-
-    const password = e.target.password.value;
 
     signInWithEmailAndPassword(database, email, password)
       .then((data) => {
         console.log(data);
-        toast.success("Signin successfull", {
+        toast.success("Signin successful", {
           position: "top-center",
           autoClose: 2000,
         });
-        
         navigate("/Home");
-        dispatch(isSignedin(true))
-        // setIssignin(true)
-        // console.log(issiginin)
+        dispatch(isSignedin(true));
       })
       .catch((err) => {
-        toast.error(`Signin failed ${err}`, {
+        toast.error(`Signin failed: ${err.message}`, {
           position: "top-center",
           autoClose: 2000,
         });
       });
   };
+
   return (
-    <div className=" mt-12 flex gap-44 px-4">
-      <div className="text-center w-[35%] py-10 shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] rounded-xl">
-        <h1 className="text-3xl font-bold text-sky-400">Signin</h1>
-        <br />
-        <form onSubmit={(e) => handlesubmit(e)}>
+    <div className="flex flex-col lg:flex-row justify-center items-center lg:gap-44 gap-10 p-4 mt-12">
+      <div className="bg-white w-full max-w-md lg:w-[35%] text-center py-10 px-6 shadow-lg rounded-xl">
+        <h1 className="text-3xl font-bold text-sky-400 mb-6">Signin</h1>
+        <form onSubmit={handlesubmit} className="space-y-6">
           <input
             type="text"
             placeholder="Enter Email"
             name="email"
-            className="py-2 border-2 border-black w-[50%]"
+            className="py-2 px-3 border-2 border-gray-300 rounded w-full"
           />
-          <br />
-          <br />
           <input
             type="password"
             name="password"
             placeholder="Enter Password"
-            className="py-2 border-2 border-black w-[50%]"
+            className="py-2 px-3 border-2 border-gray-300 rounded w-full"
           />
-          <br />
-          <br />
-          <button className="py-2 border-2  w-[40%] bg-blue-400 text-lg font-semibold">
+          <button className="w-full py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition duration-300">
             Signin
           </button>
-          <p>
-            Don't have an account?{" "}
-            <span
-              className="text-blue-400 cursor-pointer"
-              onClick={() => navigate("/Signup")}
-            >
-              Signup
-            </span>
-          </p>
         </form>
+        <p className="mt-4">
+          Don't have an account?{" "}
+          <span
+            className="text-blue-400 cursor-pointer"
+            onClick={() => navigate("/Signup")}
+          >
+            Signup
+          </span>
+        </p>
       </div>
-      <div>
-        <img src="https://img.freepik.com/free-vector/ecommerce-web-page-concept-illustration_114360-8204.jpg" alt="" />
+      <div className="hidden lg:block">
+        <img
+          src="https://img.freepik.com/free-vector/ecommerce-web-page-concept-illustration_114360-8204.jpg"
+          alt="Signin illustration"
+          width={600}
+        />
       </div>
     </div>
   );

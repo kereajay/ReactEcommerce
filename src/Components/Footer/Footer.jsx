@@ -7,14 +7,15 @@ import { BsFacebook } from "react-icons/bs";
 function Footer() {
   return (
     <div>
-      <div className='grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 px-8 bg-orange-300 py-8 mt-20'>
+      <div className='grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 px-8 bg-orange-300 py-8 mt-20 '>
         <div>
           <div><h1 className='text-2xl font-semibold'>Categories</h1></div>
           {/* <br /> */}
+          <hr className='w-[80%] border-2' />
           <div>
             <ul type="none" className='text-lg'>
-              <li>Home</li>
-              <li>Cart</li>
+              <li className='mt-2'>Home</li>
+              <li className='mt-2'>Cart</li>
 
             </ul>
           </div>
@@ -23,12 +24,13 @@ function Footer() {
         <div>
           <div>
             <div><h1 className='text-2xl font-semibold'>Customer Services</h1></div>
+            <hr className='w-[80%] border-2' />
             <div>
               <ul type="none" className='text-lg'>
-                <li>About</li>
-                <li>Contact Us</li>
-                <li>Return Policy</li>
-                <li>Privacy</li>
+                <li className='mt-2'>About</li>
+                <li className='mt-2'>Contact Us</li>
+                <li className='mt-2'>Return Policy</li>
+                <li className='mt-2'>Privacy</li>
 
               </ul>
             </div>
@@ -38,6 +40,7 @@ function Footer() {
         <div>
           <div>
             <div><h1 className='text-2xl font-semibold'>Social Media</h1></div>
+            <hr className='w-[80%] border-2' />
             <br />
             <div>
               <ul type="none" className='flex gap-4 text-2xl '>

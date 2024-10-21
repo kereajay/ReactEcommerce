@@ -65,11 +65,11 @@ const routera=createBrowserRouter([
 
       },
       {
-        path:'/Cart/:id',
+        path:'/Cart',
         element:<Cart/>
       },
       {
-        path:'/Cart',
+        path:'/Cart/:id',
         element:<Cart/>
       },
       {

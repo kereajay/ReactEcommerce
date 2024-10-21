@@ -65,7 +65,7 @@ function Header() {
 
       </div>
       <div >
-        <ul type="none" className='hidden   gap-4 text-xl font-semibold bg-orange-300' id="navbaronlcick" ref={navbarref}>
+        <ul type="none" className='lg:hidden flex flex-col gap-y-6 text-xl font-semibold bg-orange-300 text-white py-4 px-2' id="navbaronlcick" ref={navbarref}>
           <li><Link to="/Home">Home</Link></li>
           <li><Link to="/Cart">Cart</Link></li>
           <li onClick={handlesignout}>Signout</li>

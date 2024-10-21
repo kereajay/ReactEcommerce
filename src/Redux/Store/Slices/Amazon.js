@@ -7,7 +7,7 @@ export const amazonApi = createApi({
     baseUrl: "https://real-time-amazon-data.p.rapidapi.com/",
     method: "GET",
     headers: {
-      'x-rapidapi-key': 'ac18448241msh25df8f16272c337p1cf69ajsn2b65461ef39e',
+      'x-rapidapi-key': '64bf17bc59mshe1c607373cdbdefp157212jsn896ee1b8af20',
       "x-rapidapi-host": "real-time-amazon-data.p.rapidapi.com",
     },
   }),

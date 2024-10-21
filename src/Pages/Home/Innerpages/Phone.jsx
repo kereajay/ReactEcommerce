@@ -11,7 +11,7 @@ function Phone() {
     const { data, error, isLoading } = useGetPhoneSearchQuery('search?query=Phone&page=1&country=US&sort_by=RELEVANCE&product_condition=ALL')
     return (
         <div>
-            <div className="py-5">
+            <div className="py-5 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
                 {error ? (
                     <>Oh no, there was an error</>
                 ) : isLoading ? (
@@ -23,11 +23,11 @@ function Phone() {
                                 return (
                                     <>
                                         <div>
-                                            <div className='px-2 py-3 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] flex gap-4 w-[70%] m-auto dark:shadow-white/80 ' >
+                                            <div className='px-2 py-3 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] flex gap-4 w-[90%] h-[90%] m-auto dark:shadow-white/80  ' >
 
 
                                                 <div  onClick={()=>navigate(`/Details/${item.asin}`)}>
-                                                    <img className='w-28 object-cover m-auto' src={item.
+                                                    <img className=' object-cover m-auto' src={item.
                                                         product_photo
                                                     } alt="" />
                                                 </div>
