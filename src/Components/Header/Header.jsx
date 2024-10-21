@@ -50,7 +50,7 @@ function Header() {
 
                   <li><Link to="/Home">Home</Link></li>
                   <li><Link to="/Cart">Cart</Link></li>
-                  <li onClick={handlesignout}>Signout</li>
+                  <li onClick={handlesignout} className='cursor-pointer'>Signout</li>
                   <li className='flex gap-1 items-center'>{dispayother.userdetails.displayName} <img src={dispayother.userdetails.photoURL} alt="" className='rounded-full w-10' /></li>
                   <li></li>
                   <li onClick={handletheme}><IoSunny /></li>
@@ -68,7 +68,7 @@ function Header() {
         <ul type="none" className='lg:hidden flex flex-col gap-y-6 text-xl font-semibold bg-orange-300 text-white py-4 px-2' id="navbaronlcick" ref={navbarref}>
           <li><Link to="/Home">Home</Link></li>
           <li><Link to="/Cart">Cart</Link></li>
-          <li onClick={handlesignout}>Signout</li>
+          <li onClick={handlesignout} className='cursor-pointer'>Signout</li>
           <li onClick={handletheme}><IoSunny /></li>
           <li className='flex gap-1 items-center'>{dispayother.userdetails.displayName} <img src={dispayother.userdetails.photoURL} alt="" className='rounded-full w-10' /></li>
           <li></li>
